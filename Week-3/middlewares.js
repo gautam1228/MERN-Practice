@@ -4,6 +4,8 @@ const zod = require("zod");
 
 const app = express();
 
+const schema = zod.array(zod.number());
+
 function middleware1(req, res, next){
 
     // some logic   
@@ -37,7 +39,18 @@ app.post("/health-checkup", function(req, res){
     const kidneys = req.body.kidneys;
     const kidneyLength = kidneys.length;
 
-    res.send("you have " + kidneyLength + " kidneys.")
+    const response = schema.safeParse(kidneys);
+
+    if(!response.success){
+        res.status(411).json({
+            msg : "Incorrect Input !"
+        });
+    }else{
+
+        res.send("you have " + kidneyLength + " kidneys.")
+        
+    }
+
 
 })
 
