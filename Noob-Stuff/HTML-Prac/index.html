@@ -3,10 +3,54 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>First-HTML-Page</title>
 </head>
 <body>
     <h1>This is my intro to HTML !</h1>
+    <h2>This is a smaller heading.</h2>
     <p>This is a paragraph. This is the new part .</p>
+    <a href = "https://www.google.com">Google</a>
+    <br>
+    <a href = "https://www.google.com" target = "_main">Google But In New Tab</a>
+    <br>
+    <br>
+    <form action = "/action.php">
+        <input type = "text" placeholder="Username">
+        <br>
+        <br>
+        <input type = "password" placeholder="Password">
+        <br>
+        <br>
+        <h4>Choose your gender :</h4>
+        <label for = "m">
+            <input type = "radio" value = "Male" name = "gender" id = "m">Male
+        </label>
+        <label for = "f">
+            <input type = "radio" value = "Female" name = "gender" id = "f">Female
+        </label>
+        
+        <h4>Choose your subjects :</h4>
+        <label for = "mth">
+            <input type = "checkbox" value = "Maths" name = "subjects" id = "mth">Maths
+        </label>
+        <label for = "phy">
+            <input type = "checkbox" value = "Physics" name = "subjects" id = "phy">Physics
+        </label>
+        <label for = "chem">
+            <input type = "checkbox" value = "Chemistry" name = "subjects" id = "chem">Chemistry
+        </label>
+        <label for = "bio">
+            <input type = "checkbox" value = "Biology" name = "subjects" id = "bio">Biology
+        </label>
+        <label for = "cse">
+            <input type = "checkbox" value = "Computer Science" name = "subjects" id = "cse">Computer Science
+        </label>
+        
+        <br>
+        <br>
+        <button type="submit">Submit</button>
+        <button type = "reset">Clear</button>
+    </form>
+
 </body>
 </html>
