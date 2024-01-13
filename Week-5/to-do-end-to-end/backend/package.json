@@ -1,0 +1,16 @@
+{
+  "name": "to-do-app",
+  "version": "1.0.0",
+  "description": "A web app where users can create get and mark their to-dos as done.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Gautam Singh",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.2",
+    "mongoose": "^8.0.4",
+    "zod": "^3.22.4"
+  }
+}
