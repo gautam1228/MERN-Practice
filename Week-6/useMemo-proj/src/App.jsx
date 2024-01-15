@@ -1,7 +1,7 @@
 import { useState } from 'react'
 
 function App() {
-  
+
   const [count, setCount] = useState(0);
 
   const [num, setNum] = useState(0);
@@ -10,7 +10,7 @@ function App() {
     num = parseInt(num);
     return(
       <div>
-        Sum is : {num*(num+1)/2}
+        Sum from 1 to {num} is : {num*(num+1)/2}
       </div>
     )
   }
