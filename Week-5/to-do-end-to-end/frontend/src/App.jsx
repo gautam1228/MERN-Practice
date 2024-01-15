@@ -18,7 +18,7 @@ function App() {
 
   return (
     <div>
-      <CreateToDo></CreateToDo>
+      <CreateToDo todos = {todos} setToDos = {setToDos}></CreateToDo>
       <ToDos todos={[]}></ToDos>
     </div>
   )
