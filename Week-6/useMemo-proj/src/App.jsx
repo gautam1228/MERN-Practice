@@ -1,8 +1,11 @@
 import { useState } from 'react'
 
 function App() {
+  
   const [count, setCount] = useState(0);
+
   const [num, setNum] = useState(0);
+
   function SumCalc({num}){
     num = parseInt(num);
     return(
