@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { CreateToDo } from './components/CreateToDo'
 import { ToDos } from './components/ToDos'
 
@@ -13,13 +13,21 @@ function App() {
   //     const json = await res.json();
   //     setToDos(json.todos); 
   //   });
-
   
+  useEffect(() => {
+    setInterval(() => {
+      fetch("http://localhost:3000/todos")
+        .then(async (res) => {
+          const json = await res.json();
+          setToDos(json.todos);
+        });
+      }, 5000);
+  }, []);
 
   return (
     <div>
       <CreateToDo todos = {todos} setToDos = {setToDos}></CreateToDo>
-      <ToDos todos={[]}></ToDos>
+      <ToDos todos={todos}></ToDos>
     </div>
   )
 }
