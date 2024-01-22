@@ -1,4 +1,4 @@
-import './App.css'
+import { RevenueCard } from "./components/RevenueCard"
 
 function App() {
 
@@ -55,7 +55,13 @@ function App() {
         <div className='bg-yellow-500'>Hi</div>
         <div className='bg-blue-500'>Hi</div>
       </div>
-
+      
+      <div><br></br></div>
+      
+      <div className="grid grid-cols-3">
+        <div className="col-span-1"></div>
+        <RevenueCard title = {"Amount pending"} amount={"92,312.20"} orderCount={13} />
+      </div>
     </>
   )
 }
