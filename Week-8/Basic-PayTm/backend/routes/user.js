@@ -9,7 +9,7 @@ const router = express.Router();
 
 const signupBodySchema = zod.object({
     username : zod.string().email(),
-    password : zod.string().min(6),
+    password : zod.string(),
     firstName : zod.string(),
     lastName : zod.string()
 });
@@ -19,7 +19,7 @@ router.post("/signup", async (req, res) => {
     const { success } = signupBodySchema.safeParse(req.body);
 
     if(!success){
-        res.status(411).json({
+        return res.status(411).json({
             message : "Invalid Inputs."
         });
     }
@@ -28,7 +28,7 @@ router.post("/signup", async (req, res) => {
     });
 
     if(userExists){
-        res.status(411).json({
+        return res.status(411).json({
             message : "Email already taken."
         });
     }
@@ -49,7 +49,7 @@ router.post("/signup", async (req, res) => {
             userId : user._id
         }, JWT_SECRET);
         
-        res.status(200).json({
+        return res.status(200).json({
             message : "User created successfully !",
             token : token
         });
@@ -146,6 +146,4 @@ router.get("/bulk", authMiddleware, async (req, res) => {
 
 });
 
-module.exports = {
-    router
-}
+module.exports = router;

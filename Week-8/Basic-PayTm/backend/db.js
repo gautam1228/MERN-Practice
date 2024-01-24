@@ -1,5 +1,4 @@
 const mongoose = require("mongoose");
-const { number } = require("zod");
 
 mongoose.connect('mongodb+srv://gautamsingh12122003:RUrW6ihRmhU0k9TE@cluster0.h7cdvww.mongodb.net/paytm');
 
@@ -14,10 +13,10 @@ const UserSchema = new mongoose.Schema({
         minLength : 3,
         maxLength : 30
     },
-    pasword : {
+    password : {
         type : String,
         required : true,
-        minLength : true
+        minLength : 6
     },
     firstName : {
         type : String,

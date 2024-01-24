@@ -12,7 +12,7 @@ router.get("/balance", authMiddleware, async (req, res) => {
         userId : req.userId
     });
 
-    res.status(200).json({
+    return res.status(200).json({
         balance
     });
 
@@ -28,7 +28,7 @@ router.post("/transfer", authMiddleware, async (req, res) => {
     const { success } = transferBodySchema.safeParse(req.body);
 
     if(!success){
-        res.status(411).json({
+        return res.status(411).json({
             message : "Invalid Inputs."
         });
     }
@@ -44,7 +44,7 @@ router.post("/transfer", authMiddleware, async (req, res) => {
     }).session(session);
 
     if(!account || account.balance < amount){
-        await session.AbortTransaction();
+        await session.abortTransaction();
         return res.status(400).json({
             message : "Insufficient balance."
         });
@@ -56,20 +56,18 @@ router.post("/transfer", authMiddleware, async (req, res) => {
 
     if(!toAccount){
         await session.abortTransaction();
-        res.status(400).json({
+        return res.status(400).json({
             message : "Invalid Account."
         });
     }
 
     await Account.updateOne({userId : req.userId}, {"$inc" : { balance : -amount }}).session(session);
-    await Account.updateOne({userId : to}, {"$inc" : { balance : +amount }}).session(session);
+    await Account.updateOne({userId : to}, {"$inc" : { balance : amount }}).session(session);
 
     await session.commitTransaction();
-    res.status(200).json({
+    return res.status(200).json({
         message : "Transaction successful !"
     });
 });
 
-module.exports = {
-    router
-}
+module.exports = router;
