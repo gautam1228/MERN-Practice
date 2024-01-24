@@ -1,9 +1,10 @@
 const mongoose = require("mongoose");
+const { number } = require("zod");
 
-mongoose.connect('mongodb+srv://gautamsingh12122003:RUrW6ihRmhU0k9TE@cluster0.h7cdvww.mongodb.net/payTm');
+mongoose.connect('mongodb+srv://gautamsingh12122003:RUrW6ihRmhU0k9TE@cluster0.h7cdvww.mongodb.net/paytm');
 
 // User schema
-const UserSchema = mongoose.Schema({
+const UserSchema = new mongoose.Schema({
     username : {
         type : String,
         required : true,
@@ -32,9 +33,23 @@ const UserSchema = mongoose.Schema({
     }
 });
 
+const AccountSchema = new mongoose.Schema({
+    userId : {
+        type : mongoose.Schema.Types.ObjectId,
+        ref : 'User',
+        required : true
+    },
+    balance : {
+        type : Number,
+        required : true
+    }
+});
+
 // Created a model for the schema
 const User = mongoose.model('Users', UserSchema);
+const Account = mongoose.model('Accounts', AccountSchema);
 
 module.exports = {
-    User
+    User,
+    Account
 }

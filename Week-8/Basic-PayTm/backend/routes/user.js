@@ -1,5 +1,5 @@
 const express = require("express");
-const { User } = require("../db");
+const { User, Account } = require("../db");
 const zod = require("zod");
 const jwt = require("jsonwebtoken");
 const { JWT_SECRET } = require("../config");
@@ -38,6 +38,11 @@ router.post("/signup", async (req, res) => {
             firstName : req.body.firstName,
             lastName : req.body.lastName,
             password : req.body.password
+        });
+
+        await Account.create({
+            userId : user._id,
+            balance : Math.floor(1000*Math.random()) + 1
         });
         
         const token = jwt.sign({
@@ -106,6 +111,37 @@ router.put("/", authMiddleware, async (req, res) => {
 
     await User.updateOne(req.body, {
         _id : req.userId
+    });
+
+    res.status(200).json({
+        message : "Updated successfully."
+    });
+
+});
+
+router.get("/bulk", authMiddleware, async (req, res) => {
+    
+    const filter = req.query.filter || "";
+
+    const users = await User.find({
+        $or : [{
+            firstName : {
+                "$regex" : filter
+            }
+        }, {
+            lastName : {
+                "$regex" : filter
+            }
+        }]
+    });
+
+    res.json({
+        users : users.map(user => ({
+            username : user.username,
+            firstName : user.firstName,
+            lastName : user.lastName,
+            _id : user._id
+        }))
     });
 
 });
