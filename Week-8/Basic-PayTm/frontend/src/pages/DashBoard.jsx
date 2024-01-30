@@ -1,8 +1,8 @@
 export function DashBoard(){
 
     return (
-        <div>
-            Dashboard Page
+        <div className="shadow flex justify-between bg-black">
+            
         </div>
     )
 
