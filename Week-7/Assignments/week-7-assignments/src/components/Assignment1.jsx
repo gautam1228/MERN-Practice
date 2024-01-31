@@ -1,4 +1,4 @@
-export function Assignment1({name, age, city, likes, followers, following}){
+export function Assignment1({name, age, city, likes, followers, following, img_src}){
 
 
     return (
@@ -8,13 +8,13 @@ export function Assignment1({name, age, city, likes, followers, following}){
                 <div className="rounded-lg bg-gradient-to-b from-blue-500 to-blue-300 h-40 w-80 m-1 z-0">
                 </div>
                 <div className="absolute z-30 top-28 left-32">
-                    <img src="../src/assets/Profile.jpg" className="h-20 border-solid border-2 border-white rounded-full " alt ="profile image"/>
+                    <img src={img_src} className="h-20 border-solid border-2 border-white rounded-full " alt ="profile image"/>
                 </div>
 
                 <div className="mt-16 mb-4 flex justify-center">
                     {`${name}`}
                     <div className="text-gray-500 mx-2">
-                        {`${age}`}
+                        {age}
                     </div>
                 </div>
                 <div className="text-gray-500">
