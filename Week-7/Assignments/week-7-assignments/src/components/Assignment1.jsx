@@ -20,7 +20,7 @@ export function Assignment1({name, age, city, likes, followers, following, img_s
                 <div className="text-gray-500">
                     {city}
                 </div>
-                <hr class="w-60 h-0.5 mx-auto bg-gray-100 border-0 rounded md:my-10 dark:bg-gray-300"></hr>
+                <hr class="w-40 h-0.5 mx-auto bg-gray-100 border-0 rounded md:my-10 dark:bg-gray-300"></hr>
 
                 <div className="flex justify-around mb-10 text-gray-500">
                     <div className="flex flex-col justify-center">
