@@ -1,23 +1,34 @@
-export interface Env {
-	
+import { Hono } from 'hono';
+
+const app = new Hono()
+
+// Creating a middleware.
+async function authMiddleware(c: any, next: any){
+
+	if(c.req.header("Authorization")){
+		await next();
+	} else {
+		return c.text("You don't have access.");
+	}
+
 }
 
-export default {
-	async fetch(request: Request, env: Env, ctx: ExecutionContext): Promise<Response> {
-		// We can write code like this and handle all the different requests to our backend, but we need a more optimal way to do all that instead of this convoluted way.
-		console.log(request.body);
-		console.log(request.headers);
-		console.log(request.method);
-		console.log(request.url);
+app.get("/", async (c) => {
+	
+	return c.text("Hi there ! This is the starting page.");
 
-		if (request.method === "GET") {
-			return Response.json({
-				message: "you sent a get request"
-			});
-		} else {
-			return Response.json({
-				message: "you did not send a get request"
-			});
-		}
-	}
-};
+});
+
+app.post("/", authMiddleware, async (c) => {
+
+	const body = await c.req.json();
+
+	console.log(body.message);
+	console.log(c.req.header("Authorization"));
+	console.log(c.req.query("userId"));
+
+	return c.text("Hello, from the server !");
+
+});
+
+export default app
