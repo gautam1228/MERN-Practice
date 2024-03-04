@@ -13,13 +13,15 @@ model User {
   username    String    @unique
   password    String
   firstName   String?
-  lastName    String?    
+  lastName    String?
+  todos       Todo[] 
 }
 
-model ToDo {
+model Todo {
   id              Int       @id @default(autoincrement())
   title           String
   description     String?
   done            Boolean   @default(false)
-  userId         Int 
+  userId          Int
+  user            User      @relation(fields: [userId], references: [id])
 }
