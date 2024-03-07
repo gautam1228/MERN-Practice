@@ -1,0 +1,15 @@
+{
+  "name": "@gautam28dec/medium-common",
+  "version": "1.0.0",
+  "description": "Dependencies for the backend and frontend in my medium-blog project",
+  "main": "dist/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "zod": "^3.22.4"
+  }
+}
