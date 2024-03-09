@@ -16,7 +16,7 @@ export const blogRouter = new Hono<{
 
 // Authentication Middleware
 
-blogRouter.use("/blog/*", async (c, next) => {
+blogRouter.use("/*", async (c, next) => {
 
     const authHeader = c.req.header("authorization") || "";
     // Get the token from the header.
@@ -72,7 +72,7 @@ blogRouter.post('/', async (c) => {
     
   }
   
-  const authorId = c.get('userId');
+  const userId = c.get('userId');
   
   const prisma = new PrismaClient({
     datasourceUrl : c.env.DATABASE_URL
@@ -83,7 +83,7 @@ blogRouter.post('/', async (c) => {
       title : body.title,
       content : body.content,
       published : body.published,
-      authorId : authorId  
+      authorId : userId  
     }
   });
   
@@ -130,9 +130,34 @@ blogRouter.put('/', async (c) => {
   });
   
 });
+
   
-  
-  
+// ToDo : Add Pagination  
+blogRouter.get('/bulk', async (c) => {
+    
+  const prisma = new PrismaClient({
+    datasourceUrl : c.env.DATABASE_URL
+  }).$extends(withAccelerate());  
+
+  const blogs = await prisma.post.findMany({
+    select : {
+      content : true,
+      title : true,
+      id : true,
+      author : {
+        select : {
+          name : true
+        }
+      }
+    }
+  });
+
+  return c.json({
+    blogs
+  });
+
+});
+
 blogRouter.get('/:id', async (c) => {
   const id = c.req.param('id');
 
@@ -161,21 +186,5 @@ blogRouter.get('/:id', async (c) => {
       message : "Error while fetching blog post."
     });
   }
-
-});
-  
-
-// ToDo : Add Pagination  
-blogRouter.get('/bulk/blogs', async (c) => {
-    
-  const prisma = new PrismaClient({
-    datasourceUrl : c.env.DATABASE_URL
-  }).$extends(withAccelerate());  
-
-  const blogs = await prisma.post.findMany();
-
-  return c.json({
-    blogs
-  });
 
 });

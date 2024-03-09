@@ -10,7 +10,7 @@ export const userRouter = new Hono<{
     Bindings : {
         DATABASE_URL : string,
         JWT_SECRET : string
-    }
+    },
 }>();
 
 userRouter.post('/signup', async (c) => {
@@ -42,7 +42,7 @@ userRouter.post('/signup', async (c) => {
       
       const token = await sign({
         id : user.id
-      }, c.env.JWT_SECRET); 
+      }, c.env.JWT_SECRET);
       
       return c.json({
         token
@@ -66,12 +66,12 @@ userRouter.post('/signup', async (c) => {
     const { success } = signinSchema.safeParse(body);
     
     if(!success){
-        c.status(411);
-        return c.json({
-            message: "Incorrect Inputs !"
-        });
+      c.status(411);
+      return c.json({
+        message: "Incorrect Inputs !"
+      });
     }
-
+    
     const prisma = new PrismaClient({
       datasourceUrl : c.env.DATABASE_URL
     }).$extends(withAccelerate());
@@ -82,25 +82,23 @@ userRouter.post('/signup', async (c) => {
           email : body.email
         }
       });
-  
+      
       if(!user){
-  
+        
         c.status(403);
-  
+        
         return c.json({
           message : "User not found !"
         });
-  
+        
       }
-  
+      
       const token = await sign({
         id : user.id
       }, c.env.JWT_SECRET);
-  
-    //   c.set('userId', token);
       
       return c.json({
-        message : "Signin Succesful."
+        token
       });
   
     }
