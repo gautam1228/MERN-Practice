@@ -31,7 +31,7 @@ export const Blogs = () => {
             <AppBar/>
             <div>
                 {blogs.map(blog => <BlogCard
-                        id={String(blog.id)}
+                        id={blog.id}
                         authorName={toCamelCase(blog.author.name)}
                         title={blog.title}
                         content={blog.content}
