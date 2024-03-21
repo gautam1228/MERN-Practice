@@ -2,11 +2,14 @@ FROM node:20-alpine
 
 WORKDIR /app
 
-COPY . .
+COPY package* .
+COPY ./prisma .
 
 RUN npm install
 RUN npm run build
 RUN npx prisma generate
+
+COPY . .
 
 EXPOSE 3000
 
