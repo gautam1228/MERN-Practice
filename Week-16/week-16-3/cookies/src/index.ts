@@ -2,7 +2,7 @@ import express from 'express';
 import cookieParser from 'cookie-parser';
 import cors from 'cors';
 import jwt, { JwtPayload } from 'jsonwebtoken';
-import path from 'path';
+
 
 const JWT_SECRET = 'mysecret';
 const app = express();
@@ -15,6 +15,7 @@ app.use(cors({
 
 
 app.post("/signin", (req, res) => {
+
     const email = req.body.email;
     const password = req.body.password;
     // do db validations etc
@@ -27,21 +28,30 @@ app.post("/signin", (req, res) => {
 
 });
 
+
 app.get("/user", (req, res) => {
 
     const token = req.cookies.token;
     const decoded = jwt.verify(token, JWT_SECRET) as JwtPayload;
     // Get email of the user from the db.
     res.send({
-        userId : decoded.id
+        userId: decoded.id
     });
 
 });
 
+
 app.post("/logout", (req, res) => {
+
     res.json({
         msg : "Logged Out !"
     })
+
 });
 
-app.listen(3000);
+
+app.listen(3000, () => {
+   
+    console.log("Server running on port 3000.");
+
+});
