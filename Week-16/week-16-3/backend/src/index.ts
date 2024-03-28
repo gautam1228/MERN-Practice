@@ -43,9 +43,22 @@ app.get("/user", (req, res) => {
 
 app.post("/logout", (req, res) => {
 
+    res.clearCookie("token");
+    
+    // or 
+    // res.cookie("token", "");
+    
     res.json({
         msg : "Logged Out !"
     })
+
+});
+
+app.get("/", (req, res) => {
+
+    res.json({
+        
+    });
 
 });
 
