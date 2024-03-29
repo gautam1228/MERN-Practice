@@ -2,6 +2,7 @@ import express from 'express';
 import cookieParser from 'cookie-parser';
 import cors from 'cors';
 import jwt, { JwtPayload } from 'jsonwebtoken';
+import path from 'path';
 
 
 const JWT_SECRET = 'mysecret';
@@ -62,6 +63,11 @@ app.get("/", (req, res) => {
 
 });
 
+app.get("/", (req, res) => {
+
+    res.sendFile(path.join(__dirname, "../src/index.html"));
+
+});
 
 app.listen(3000, () => {
    
