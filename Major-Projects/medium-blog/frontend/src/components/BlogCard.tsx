@@ -17,9 +17,9 @@ export const BlogCard = ({
 } : BlogCardProps) => {
 
     return (
-        <Link to ={`/blog/${id}`}>
-            <div className="flex justify-center ">
-                <div className="px-4 mt-8 mb-6 pb-2 max-w-3xl flex justify-center flex-col border-b-2 border-slate-200 cursor-pointer">
+        <div className="flex justify-center ">
+            <Link to ={`/blog/${id}`}>
+                <div className=" px-4 mt-8 mb-6 pb-2 max-w-3xl flex justify-center flex-col border-b-2 border-slate-100 cursor-pointer rounded-md">
                     <div className="flex items-center pt-2">
                         <div className="pr-2">
                             <AvatarComponent name={authorName}/>
@@ -45,8 +45,8 @@ export const BlogCard = ({
                         {Math.ceil(content.length/180) > 1 ? `${Math.ceil(content.length/450)} min read` : '1 min read'}
                     </div>
                 </div>
-            </div>
-        </Link>
+            </Link>
+        </div>
     )
     
 }
@@ -57,7 +57,7 @@ export function AvatarComponent({ name, size = "small" }: {name : string, size? 
 
     if(name.split(" ").length >= 2){
         const [ firstName, lastName ] = name.split(" ");
-        displayText = [firstName[0], lastName[0]].join("");
+        displayText = [firstName[0].toUpperCase(), lastName[0].toUpperCase()].join("");
     }
     else{
         displayText = name[0];

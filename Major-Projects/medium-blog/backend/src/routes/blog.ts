@@ -146,7 +146,8 @@ blogRouter.get('/bulk', async (c) => {
       id : true,
       author : {
         select : {
-          name : true
+          name : true,
+          id : true
         }
       }
     }
@@ -168,6 +169,17 @@ blogRouter.get('/:id', async (c) => {
     const blog = await prisma.post.findFirst({
       where : {
         id : Number(id)
+      },
+      select : {
+        id : true,
+        title : true,
+        content : true,
+        authorId : true,
+        author : {
+          select : {
+            name : true
+          }
+        }
       }
     });
     

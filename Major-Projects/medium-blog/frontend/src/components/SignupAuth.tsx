@@ -59,7 +59,7 @@ export const Auth = () => {
                             Login
                         </Link>
                     </div>
-                    <button onClick ={sendRequest} className="bg-gray-800 rounded-lg w-full my-6 h-10 text-slate-200 text-lg cursor-pointer items-center">
+                    <button onClick ={sendRequest} className="bg-gray-800 rounded-lg w-full my-6 h-10 text-slate-200 text-lg cursor-pointer items-center hover:shadow-lg">
                         Sign Up
                     </button>
                 </div>
