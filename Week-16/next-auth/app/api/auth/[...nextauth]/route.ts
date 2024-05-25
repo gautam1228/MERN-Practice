@@ -10,17 +10,19 @@ const handler = NextAuth({
                 password : { label : 'Password', type : 'password', placeholder : '1234' }
             },
             async authorize(credentials: any){
-                console.log(credentials);
 
                 return {
+
                     id : "user1",
                     email : "gautam@gmail.com",
                     name : "Gautam Singh"
+
                 };
 
             },
         })
-    ]
+    ],
+    secret : process.env.NEXTAUTH_SECRET
 });
 
 
