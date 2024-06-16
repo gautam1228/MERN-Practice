@@ -1,13 +1,14 @@
 import db from "@repo/db/client";
-import CredentialsProvider from "next-auth/providers/credentials"
+import CredentialsProvider from "next-auth/providers/credentials";
 import bcrypt from "bcrypt";
 
 export const authOptions = {
     providers: [
       CredentialsProvider({
-          name: 'Credentials',
+
+          name: 'Phone',
           credentials: {
-            phone: { label: "Phone number", type: "text", placeholder: "1231231231", required: true },
+            phone: { label: "Phone number", type: "text", placeholder: "+917654XXXXXX", required: true },
             password: { label: "Password", type: "password", required: true }
           },
           // TODO: User credentials type from next-aut
@@ -51,6 +52,7 @@ export const authOptions = {
 
             return null
           },
+
         })
     ],
     secret: process.env.JWT_SECRET || "secret",
@@ -62,5 +64,5 @@ export const authOptions = {
             return session
         }
     }
-  }
+}
   
