@@ -5,7 +5,11 @@ const app = express();
 
 app.post("/dummyBankWebHook", async (req, res) => {
 
-    const paymentInformation = {
+    const paymentInformation: {
+        token: string;
+        userId: string;
+        amount: string;
+    } = {
         token: req.body.token,
         userId: req.body.user_identifier,
         amount : req.body.amount
@@ -35,6 +39,11 @@ app.post("/dummyBankWebHook", async (req, res) => {
             })
     
         ]);
+
+        res.status(200).json({
+            message : "Captured !"
+        });
+        
     }
     catch(e){
         console.error(e);
@@ -42,21 +51,9 @@ app.post("/dummyBankWebHook", async (req, res) => {
             message : "Error while processing webhook."
         });
 
-        await db.onRampTransaction.update({
-            where : {
-                token: paymentInformation.token
-            },
-            data : {
-                status : "Failure"
-            }
-        });
-
     }
 
 
-    res.status(200).json({
-        message : "Captured !"
-    });
 
 
 });
