@@ -15,6 +15,12 @@ async function main() {
             password: hashedPass_Alice,
             name: 'Alice',
             email: 'alice123@gmail.com',
+            balance: {
+                create : {
+                    amount : 20000,
+                    locked : 0
+                }
+            },
             OnRampTransaction: {
                 create: {
                     startTime: new Date(),
@@ -28,7 +34,7 @@ async function main() {
     });
     
     const hashedPass_Bob : string = await bcrypt.hash("bob123", 10);
-
+    
     const bob = await prisma.user.upsert({
         where : { number: '9898989898' },
         update: {},
@@ -37,6 +43,12 @@ async function main() {
             password: hashedPass_Bob,
             name: 'Bob',
             email: 'bob123@gmail.com',
+            balance: {
+                create : {
+                    amount : 0,
+                    locked : 0
+                }
+            },
             OnRampTransaction: {
                 create: {
                     startTime: new Date(),
