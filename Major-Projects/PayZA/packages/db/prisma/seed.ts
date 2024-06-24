@@ -15,7 +15,7 @@ async function main() {
             password: hashedPass_Alice,
             name: 'Alice',
             email: 'alice123@gmail.com',
-            balance: {
+            Balance : {
                 create : {
                     amount : 20000,
                     locked : 0
@@ -43,7 +43,7 @@ async function main() {
             password: hashedPass_Bob,
             name: 'Bob',
             email: 'bob123@gmail.com',
-            balance: {
+            Balance : {
                 create : {
                     amount : 0,
                     locked : 0

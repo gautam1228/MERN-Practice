@@ -16,7 +16,7 @@ async function getBalance() {
 
     return {
         amount: balance?.amount || 0,
-        locked: balance?.amount || 0
+        locked: balance?.locked || 0
     }
 
 }
@@ -46,8 +46,7 @@ export default async function(){
     const transactions = await getOnRampTransactions();
 
     return (
-        <div className="w-screen">
-
+        <div className="w-screen">   
             <div className="text-4xl text-[#6a51a6] pt-8 mb-8 font-bold">
                 Transfer
             </div>
