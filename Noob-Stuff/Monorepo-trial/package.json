@@ -1,5 +1,5 @@
 {
-  "name": "Monorepo-trial",
+  "name": "monorepo-trial",
   "private": true,
   "scripts": {
     "build": "turbo build",
