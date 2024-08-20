@@ -9,7 +9,7 @@ function wasCalledAfter3S(){
 
 function setTimeoutPromisified(ms){
 
-    console.log("...... Promisified fs.readFile() ......");
+    console.log("...... Promisified setTimeout() ......");
 
     return new Promise(resolve => setTimeout(resolve, ms));
     
