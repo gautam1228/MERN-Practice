@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-export default function usePost(){
+export function usePost(){
     const [post, setPost] = useState({});
 
     async function getPosts(){
@@ -14,5 +14,28 @@ export default function usePost(){
     }, [])
 
     return post;
+
+}
+
+export function useFetch(url){
+    const [data, setData] = useState({});
+    const [loading, setLoading] = useState(true);
+
+    async function getData(){
+        setLoading(true);
+        const response = await fetch(url);
+        const json = await response.json();
+        setData(json);
+        setLoading(false);
+    }
+
+    useEffect(() => {
+        getData();
+    }, [url]);
+
+    return {
+        data,
+        loading
+    };
 
 }

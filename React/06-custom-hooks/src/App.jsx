@@ -1,12 +1,25 @@
-import usePost from "./hooks/useFetch"
+import { useState } from "react";
+import { usePost, useFetch } from "./hooks/useFetch"
 
 function App() {
 
-  const post = usePost();
+  const [postno, setPostNo] = useState(1);
+  const { data, loading } = useFetch("https://jsonplaceholder.typicode.com/posts/" + postno);
+
+  if(loading){
+    return (
+      <div>
+        Loading ...
+      </div>
+    )
+  }
 
   return (
     <>
-      {post.title}     
+      <button onClick={() => setPostNo(1)}>1</button>
+      <button onClick={() => setPostNo(2)}>2</button>
+      <button onClick={() => setPostNo(3)}>3</button>
+      {data.title}
     </>
   )
 }
