@@ -19,6 +19,7 @@ function App() {
       <button onClick={() => setPostNo(1)}>1</button>
       <button onClick={() => setPostNo(2)}>2</button>
       <button onClick={() => setPostNo(3)}>3</button>
+      <br/>
       {data.title}
     </>
   )
