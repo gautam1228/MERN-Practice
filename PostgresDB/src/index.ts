@@ -17,16 +17,16 @@ const connectDB = async () => {
 
 const sendQuery = async () => {
 
-    const createQuery = `CREATE TABLE todos (
-        id SERIAL PRIMARY KEY,
-        title VARCHAR(50),
-        description VARCHAR(100),
-        done BOOLEAN 
-    );`
+    // const createQuery = `CREATE TABLE todos (
+    //     id SERIAL PRIMARY KEY,
+    //     title VARCHAR(50),
+    //     description VARCHAR(100),
+    //     done BOOLEAN 
+    // );`;
     // const response = await pgClient.query(createQuery);
 
     const insertQuery = `INSERT INTO todos (title, description) VALUES ($1, $2);`; // To avoid SQL injection
-
+    
     const insertResponse = await pgClient.query(insertQuery, ["Go to gym","7-9 AM"]);
     console.log(insertResponse);
 }
