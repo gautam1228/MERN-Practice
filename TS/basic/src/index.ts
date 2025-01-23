@@ -15,6 +15,12 @@ function isLegal(age: number): boolean {
     }
 }
 
-const delayedCall = (fn: () => void) => {
-    setTimeout(fn, 2000);
+const delayedCall = async (fn: () => void) : Promise<void> => {
+    await new Promise<void>((resolve: () => void, reject) => {
+        setTimeout(() => {
+            fn();
+            resolve();
+        }, 2000)   
+    });
+    console.log("just logging something");
 };
