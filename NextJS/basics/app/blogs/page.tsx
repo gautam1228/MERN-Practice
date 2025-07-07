@@ -1,7 +1,7 @@
 import axios from "axios";
 
 export default async function(){
-
+    // This is how data fetching should be done in NextJS (This makes sure that the data is pre fetched within the first request)
     const todos = await getTodo();
 
     return (
